@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVIS Pitch Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #050508;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            width: 1280px;
+            height: 720px;
+            margin: 40px auto;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0f 0%, #12121a 50%, #0d0d14 100%);
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 25px 80px rgba(0, 240, 255, 0.08), 0 0 0 1px rgba(255,255,255,0.03);
+            page-break-after: always;
+        }
+
+        /* Animated background particles */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 60px 80px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Slide 1: Title */
+        .slide-1 .content {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-shield {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .logo-shield svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.4));
+        }
+
+        .slide-1 h1 {
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .footer-bar {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 20px;
+        }
+
+        /* Slide 2: Crisis */
+        .slide-2 h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 50px;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .crisis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .crisis-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .crisis-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .crisis-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .crisis-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .highlight {
+            color: #ff6b6b;
+            font-weight: 700;
+            font-size: 28px;
+            display: block;
+            margin: 8px 0;
+        }
+
+        .bottom-line {
+            margin-top: 30px;
+            padding: 20px 30px;
+            background: linear-gradient(90deg, rgba(255,107,107,0.1), transparent);
+            border-left: 3px solid #ff6b6b;
+            border-radius: 0 12px 12px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Slide 3: Solution */
+        .slide-3 h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, #00f0ff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .solution-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .solution-step {
+            flex: 1;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .solution-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: #00f0ff;
+            font-weight: 300;
+        }
+
+        .solution-step:last-child::after {
+            display: none;
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(0,240,255,0.2), rgba(139,92,246,0.2));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .solution-step h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #00f0ff;
+        }
+
+        .solution-step p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Slide 4: Metaphor */
+        .slide-4 .content {
+            justify-content: center;
+        }
+
+        .slide-4 h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .metaphor-container {
+            display: flex;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .metaphor-box {
+            flex: 1;
+            padding: 40px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .autopsy {
+            background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,107,107,0.02));
+            border: 1px solid rgba(255,107,107,0.2);
+        }
+
+        .immune {
+            background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(139,92,246,0.05));
+            border: 1px solid rgba(0,240,255,0.3);
+            box-shadow: 0 0 60px rgba(0,240,255,0.1);
+        }
+
+        .metaphor-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .autopsy .metaphor-label { color: #ff6b6b; }
+        .immune .metaphor-label { color: #00f0ff; }
+
+        .metaphor-box h3 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .autopsy h3 { color: #ff8e8e; }
+        .immune h3 { 
+            background: linear-gradient(90deg, #00f0ff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metaphor-box p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* Slide 5: Moat */
+        .slide-5 h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 50px;
+        }
+
+        .moat-triple {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .moat-lock {
+            flex: 1;
+            background: rgba(255,255,255,0.02);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .moat-lock::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00f0ff, #8b5cf6);
+        }
+
+        .lock-number {
+            font-size: 72px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.05);
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            line-height: 1;
+        }
+
+        .moat-lock h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #00f0ff;
+        }
+
+        .moat-lock p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.75);
+        }
+
+        /* Slide 6: Market */
+        .slide-6 h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+        }
+
+        .market-stat {
+            background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(139,92,246,0.05));
+            border: 1px solid rgba(0,240,255,0.15);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .market-stat .number {
+            font-size: 56px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00f0ff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .market-stat .label {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+
+        .traction-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .traction-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 24px 30px;
+            border-left: 4px solid #00f0ff;
+        }
+
+        .traction-item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .traction-item p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        /* Slide 7: Roadmap */
+        .slide-7 h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 50px;
+        }
+
+        .roadmap {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            align-items: stretch;
+        }
+
+        .road-phase {
+            flex: 1;
+            background: rgba(255,255,255,0.02);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.06);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .road-phase.active {
+            background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(139,92,246,0.05));
+            border-color: rgba(0,240,255,0.3);
+            box-shadow: 0 0 40px rgba(0,240,255,0.08);
+        }
+
+        .road-date {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00f0ff;
+            margin-bottom: 12px;
+        }
+
+        .road-phase h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .road-phase ul {
+            list-style: none;
+            flex: 1;
+        }
+
+        .road-phase li {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .road-phase li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #00f0ff;
+        }
+
+        .road-funding {
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: rgba(0,240,255,0.1);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #00f0ff;
+            text-align: center;
+        }
+
+        /* Decorative elements */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .orb-1 { background: #00f0ff; top: -100px; right: -100px; }
+        .orb-2 { background: #8b5cf6; bottom: -100px; left: -100px; }
+
+        /* Print styles */
+        @media print {
+            .slide {
+                margin: 0;
+                page-break-after: always;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        /* Navigation hint */
+        .nav-hint {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.3);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: Title -->
+    <div class="slide slide-1">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="content">
+            <div class="logo-shield">
+                <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60 10L20 30V55C20 78.5 37 99.5 60 110C83 99.5 100 78.5 100 55V30L60 10Z" 
+                          stroke="url(#shieldGrad)" stroke-width="3" fill="rgba(0,240,255,0.08)"/>
+                    <path d="M60 25L35 38V52C35 68 45 83 60 90C75 83 85 68 85 52V38L60 25Z" 
+                          stroke="url(#shieldGrad)" stroke-width="2" fill="rgba(139,92,246,0.1)"/>
+                    <circle cx="60" cy="58" r="12" stroke="#00f0ff" stroke-width="2" fill="none"/>
+                    <path d="M60 46V58L68 66" stroke="#00f0ff" stroke-width="2" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="shieldGrad" x1="20" y1="10" x2="100" y2="110">
+                            <stop offset="0%" stop-color="#00f0ff"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1>OVIS</h1>
+            <div class="subtitle">The Active Firewall for Regulated AI<br>
+            <span style="font-size: 20px; opacity: 0.6;">Turning AI Compliance from a Cost Center into a Cryptographic Guarantee</span></div>
+            <div class="footer-bar">
+                <span>International Group of Developers</span>
+                <span>Pre-Seed 2026</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: The Silent Crisis -->
+    <div class="slide slide-2">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1" style="opacity: 0.15; background: #ff6b6b;"></div>
+        <div class="content">
+            <h2>Black Boxes are High-Risk Liabilities</h2>
+            <div class="crisis-grid">
+                <div class="crisis-card">
+                    <h3>⚡ The Bias Gap</h3>
+                    <p>Algorithms deny loans to specific demographics</p>
+                    <span class="highlight">40–80% more often</span>
+                    <p style="font-size: 14px; margin-top: 8px;">due to hidden correlations (e.g., zip codes)</p>
+                </div>
+                <div class="crisis-card">
+                    <h3>🔨 The Regulatory Hammer</h3>
+                    <p>EU AI Act fines reach</p>
+                    <span class="highlight">7% of global turnover</span>
+                    <p style="font-size: 14px; margin-top: 8px;">— catastrophic for enterprise</p>
+                </div>
+                <div class="crisis-card">
+                    <h3>🕳️ The Audit Trap</h3>
+                    <p>Current compliance is manual, slow, and costs banks</p>
+                    <span class="highlight">$2.5M – $5M annually</span>
+                </div>
+                <div class="crisis-card">
+                    <h3>🔒 The IP Paradox</h3>
+                    <p>You can't prove your AI is fair without revealing your proprietary intellectual property</p>
+                </div>
+            </div>
+            <div class="bottom-line">
+                Bottom Line: Compliance today is reactive, expensive, and incompatible with IP protection.
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: Solution -->
+    <div class="slide slide-3">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="content">
+            <h2>Cryptographic Compliance at the Edge</h2>
+            <div class="solution-flow">
+                <div class="solution-step">
+                    <div class="step-icon">📋</div>
+                    <h3>OPL</h3>
+                    <p>Lawyers define rules in YAML; we compile them into immutable WASM "Law-Binaries"</p>
+                </div>
+                <div class="solution-step">
+                    <div class="step-icon">🔒</div>
+                    <h3>TEE Enclave</h3>
+                    <p>Logic runs inside hardware-enforced TEEs (NVIDIA H100 CC / Intel TDX)</p>
+                </div>
+                <div class="solution-step">
+                    <div class="step-icon">🛡️</div>
+                    <h3>Sentinel Protocol</h3>
+                    <p>Model outputs are locked behind a hardware-signed "Logical Gate"</p>
+                </div>
+                <div class="solution-step">
+                    <div class="step-icon">✓</div>
+                    <h3>ZK-Proofs</h3>
+                    <p>Generate proofs of compliance/violation without exposing model weights</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: Immunity vs Autopsy -->
+    <div class="slide slide-4">
+        <div class="grid-overlay"></div>
+        <div class="content">
+            <h2>Immunity vs. Autopsy</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 40px; font-size: 18px;">
+                Why block the output instead of just logging it for later?
+            </p>
+            <div class="metaphor-container">
+                <div class="metaphor-box autopsy">
+                    <div class="metaphor-label">Reactive</div>
+                    <h3>Logging is an Autopsy</h3>
+                    <p>"In the banking sector, the damage from a single erroneous or discriminatory decision can cost millions in reputational loss and class-action lawsuits."</p>
+                    <p style="margin-top: 16px; font-style: italic; opacity: 0.8;">You study the body after the damage is done.</p>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="metaphor-box immune">
+                    <div class="metaphor-label">Proactive</div>
+                    <h3>OVIS is an Immune System</h3>
+                    <p>"We don't just record the violation of the law; we make it physically impossible for the violation to exit the system."</p>
+                    <p style="margin-top: 16px; font-style: italic; opacity: 0.8;">Prevention, not insurance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: Technology Moat -->
+    <div class="slide slide-5">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="content">
+            <h2>The Triple-Lock Architecture</h2>
+            <div class="moat-triple">
+                <div class="moat-lock">
+                    <div class="lock-number">01</div>
+                    <h3>Policy Integrity</h3>
+                    <p>The Policy Hash ensures the rules haven't been tampered with "post-factum." Immutable governance from the moment of deployment.</p>
+                </div>
+                <div class="moat-lock">
+                    <div class="lock-number">02</div>
+                    <h3>Active Interception</h3>
+                    <p>Our Rust-based Proxy intercepts tensors at the GPU-memory level. Zero-copy, nanosecond latency enforcement.</p>
+                </div>
+                <div class="moat-lock">
+                    <div class="lock-number">03</div>
+                    <h3>Hardware Oracle</h3>
+                    <p>The Sentinel (FPGA) provides the final cryptographic signature, creating a tamper-proof audit trail that regulators can verify in seconds.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: Market -->
+    <div class="slide slide-6">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="content">
+            <h2>The "Visa for AI Trust"</h2>
+            <div class="market-grid">
+                <div class="market-stat">
+                    <div class="number">$15B+</div>
+                    <div class="label">Total Addressable Market by 2028<br>(AI Governance & Risk Management)</div>
+                </div>
+                <div class="traction-list">
+                    <div class="traction-item">
+                        <h4>🚀 OVIS Sandbox MVP — Completed</h4>
+                        <p>Functional proof-of-concept demonstrating real-time blocking of usurious interest rates</p>
+                    </div>
+                    <div class="traction-item">
+                        <h4>🛡️ The Moat</h4>
+                        <p>Hardware-agnostic, standard-first approach. We aren't just a tool; we are the protocol for the future of responsible AI.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: Roadmap -->
+    <div class="slide slide-7">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="content">
+            <h2>Scaling Trust: 2026–2028</h2>
+            <div class="roadmap">
+                <div class="road-phase active">
+                    <div class="road-date">Q2 2026</div>
+                    <h3>Pre-Seed</h3>
+                    <ul>
+                        <li>Sandbox deployment</li>
+                        <li>Pilot outreach to Tier-2 banks</li>
+                        <li>Core team expansion</li>
+                    </ul>
+                    <div class="road-funding">Pre-Seed Round</div>
+                </div>
+                <div class="road-phase">
+                    <div class="road-date">Q3–Q4 2026</div>
+                    <h3>Seed</h3>
+                    <ul>
+                        <li>Integration with NVIDIA H100 CC</li>
+                        <li>Production-grade ZK (Plonky2/Halo2)</li>
+                        <li>First enterprise pilots</li>
+                    </ul>
+                    <div class="road-funding">Seed Round</div>
+                </div>
+                <div class="road-phase">
+                    <div class="road-date">2027</div>
+                    <h3>Series A</h3>
+                    <ul>
+                        <li>Full hardware Sentinel (FPGA)</li>
+                        <li>HFT-standard latency</li>
+                        <li>First Bank Pilot live</li>
+                    </ul>
+                    <div class="road-funding">Series A</div>
+                </div>
+                <div class="road-phase">
+                    <div class="road-date">2028</div>
+                    <h3>Series B</h3>
+                    <ul>
+                        <li>Global open standard</li>
+                        <li>Regulated inference protocol</li>
+                        <li>Market leadership</li>
+                    </ul>
+                    <div class="road-funding">Series B</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-hint">
+        💡 Совет: Нажмите Ctrl+P (или Cmd+P) → Сохранить как PDF, чтобы получить готовую презентацию<br>
+        Разрешение: 1280×720 (16:9 HD)
+    </div>
+
+</body>
+</html>
