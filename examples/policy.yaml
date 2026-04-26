@@ -1,0 +1,61 @@
+# OVIS Policy Language (OPL) Example
+# Demonstrates credit scoring rules for EU AI Act compliance
+
+id: "credit_policy_bank_demo"
+version: 1
+description: "Enforces fair lending and usury cap rules"
+
+rules:
+  # Rule 1: Interest rate must not exceed legal maximum (usury law)
+  - id: "R003_usury"
+    name: "Interest rate cap"
+    description: "APR cannot exceed 25% for consumer loans"
+    type: "output_range"
+    output_name: "interest_rate"
+    min: 0.0
+    max: 25.0
+    action: "block"
+    severity: "high"
+    zk_reveal: "range_proof"
+
+  # Rule 2: Age discrimination prohibited (influence < 1%)
+  - id: "R001_anti_age"
+    name: "No age discrimination"
+    description: "Credit decision must not depend on age > 60"
+    type: "input_influence"
+    input_features: ["age"]
+    threshold: 0.01
+    action: "block"
+    zk_reveal: "influence_sum"
+
+  # Rule 3: Gender must have zero influence (ECOA compliance)
+  - id: "R004_anti_gender"
+    name: "Gender neutrality"
+    description: "Loan approval rate must be independent of gender"
+    type: "input_influence"
+    input_features: ["gender"]
+    threshold: 0.001
+    action: "block"
+    zk_reveal: "influence_sum"
+
+  # Rule 4: Postcode redlining prevention (counterfactual stability)
+  - id: "R002_geo_redlining"
+    name: "Postal code invariance"
+    description: "Decision unchanged within same risk group"
+    type: "counterfactual_stability"
+    input_feature: "postal_code"
+    equivalence_group: "postal_risk_groups_v1"
+    tolerance: 0.0
+    action: "block"
+    schedule: "realtime"
+
+  # Rule 5: Disparate impact monitoring (batch)
+  - id: "R005_disparate_impact"
+    name: "Statistical parity"
+    description: "Mean credit limit for protected groups within 5% of majority"
+    type: "aggregate_bias"
+    group_feature: "ethnicity"
+    metric: "mean_credit_limit"
+    max_ratio: 0.95
+    action: "audit_only"
+    schedule: "daily_aggregate"
