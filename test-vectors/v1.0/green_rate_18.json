@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "name": "Green - interest rate 18% (max 25%)",
+  "policy_yaml": "id: credit_policy_v1\nrules:\n  - id: R003_usury\n    type: output_range\n    output_name: interest_rate\n    min: 0.0\n    max: 25.0\n",
+  "model_output": 18.0,
+  "expected_status": "green",
+  "expected_violation": false
+}
