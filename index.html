@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVIS | The Active Firewall for Regulated AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050508;
+            --accent-blue: #00f0ff;
+            --accent-purple: #8b5cf6;
+            --accent-red: #ff6b6b;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: #ededed; 
+            overflow-x: hidden;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Gradient Effects */
+        .gradient-text { 
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-blue) 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        
+        .hero-glow {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        /* Slide Simulation Overrides */
+        .slide-container {
+            display: none; /* Hidden by default, toggled via JS */
+            background: #000;
+            padding: 40px 0;
+        }
+
+        .slide {
+            width: 1280px;
+            height: 720px;
+            margin: 0 auto 40px;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0f 0%, #12121a 50%, #0d0d14 100%);
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 25px 80px rgba(0, 240, 255, 0.08);
+        }
+
+        /* Terminal Styling */
+        .terminal-window {
+            background: #0d0d12;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+
+        /* Logic for Toggling */
+        #main-site.hidden { display: none; }
+        #slide-view.active { display: block; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="main-site">
+        <nav class="flex justify-between items-center p-8 max-w-7xl mx-auto relative z-10">
+            <div class="text-3xl font-black tracking-tighter gradient-text">OVIS</div>
+            <div class="flex items-center space-x-8 text-sm font-bold uppercase tracking-widest text-gray-400">
+                <a href="#solution" class="hover:text-white transition">Solution</a>
+                <button onclick="toggleView()" class="hover:text-blue-400 transition">Pitch Deck</button>
+                <a href="https://github.com/karamik/OVIS-Sandbox" class="px-6 py-3 bg-white text-black rounded-full hover:bg-blue-400 hover:text-white transition transform hover:scale-105">GitHub</a>
+            </div>
+        </nav>
+
+        <header class="max-w-7xl mx-auto px-6 pt-16 pb-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative">
+            <div class="hero-glow"></div>
+            <div>
+                <div class="inline-block px-4 py-1 border border-blue-500/30 rounded-full text-blue-400 text-xs font-bold tracking-widest uppercase mb-6">
+                    Pre-Seed Round 2026
+                </div>
+                <h1 class="text-6xl lg:text-8xl font-black leading-none mb-8 tracking-tighter">
+                    AI with <br><span class="gradient-text">Immunity</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-12 max-w-lg leading-relaxed">
+                    OVIS is the world's first active cryptographic firewall. We make AI bias and non-compliance physically impossible via hardware-enforced logic.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/karamik/OVIS-Sandbox" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-bold text-lg transition shadow-lg shadow-blue-500/20">Run Sandbox</a>
+                    <button onclick="toggleView()" class="border border-gray-700 hover:border-gray-400 px-10 py-5 rounded-2xl font-bold text-lg transition">View Pitch</button>
+                </div>
+            </div>
+
+            <div class="terminal-window rounded-3xl overflow-hidden border border-white/5">
+                <div class="bg-white/5 px-6 py-4 flex space-x-2 border-b border-white/5">
+                    <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                    <span class="text-xs text-gray-500 mono ml-4 uppercase tracking-widest">OVIS-Core-v8.2</span>
+                </div>
+                <div class="p-8 text-sm mono space-y-3">
+                    <p class="text-gray-500 line-through decoration-blue-500/50">Monitoring only...</p>
+                    <p class="text-blue-400">⚡ OVIS Firewall: ACTIVE</p>
+                    <p class="text-gray-400">Ruleset: ECOA-Compliance-L4</p>
+                    <div class="h-px bg-white/5 my-4"></div>
+                    <p class="text-white flex justify-between"><span>Model Inference:</span> <span class="text-blue-400">OK</span></p>
+                    <p class="text-white flex justify-between"><span>Input (Gender):</span> <span class="text-gray-500">BLOCKED-FROM-LOGIC</span></p>
+                    <p class="text-white flex justify-between"><span>Output (Rate):</span> <span class="text-red-400">22.4%</span></p>
+                    <p class="text-red-500 font-bold bg-red-500/10 p-2 rounded">CRITICAL: Threshold 20% exceeded. Transaction SHIELDED.</p>
+                    <p class="text-yellow-400">Sent to Sentinel for ZK-Audit...</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="py-32 border-y border-white/5">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <blockquote class="text-4xl md:text-5xl font-light italic text-white leading-tight">
+                    "Logging is an <span class="text-red-500">autopsy</span>. <br>OVIS is an <span class="text-blue-400">immune system</span>."
+                </blockquote>
+            </div>
+        </section>
+    </div>
+
+    <div id="slide-view" class="slide-container">
+        <div class="flex justify-center mb-8">
+            <button onclick="toggleView()" class="px-6 py-2 border border-white/20 rounded-full text-xs font-bold tracking-tighter hover:bg-white hover:text-black transition uppercase">Back to Website</button>
+        </div>
+        
+        <div class="slide" id="deck-anchor">
+             <div class="flex items-center justify-center h-full flex-col p-20 text-center">
+                 <h1 class="text-7xl font-black gradient-text mb-4">OVIS</h1>
+                 <p class="text-2xl text-gray-400 font-light tracking-widest uppercase">The Active Firewall for Regulated AI</p>
+                 <div class="mt-20 text-gray-600 tracking-widest text-sm">SCROLL FOR FULL DECK</div>
+             </div>
+        </div>
+        </div>
+
+    <script>
+        function toggleView() {
+            const main = document.getElementById('main-site');
+            const slides = document.getElementById('slide-view');
+            
+            if (slides.style.display === 'block') {
+                slides.style.display = 'none';
+                main.style.display = 'block';
+                window.scrollTo(0,0);
+            } else {
+                slides.style.display = 'block';
+                main.style.display = 'none';
+                window.scrollTo(0,0);
+            }
+        }
+    </script>
+</body>
+</html>
