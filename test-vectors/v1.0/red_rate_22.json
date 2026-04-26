@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "name": "Red - interest rate 22% (max 20%)",
+  "policy_yaml": "id: credit_policy_v2\nrules:\n  - id: R003_usury\n    type: output_range\n    output_name: interest_rate\n    min: 0.0\n    max: 20.0\n",
+  "model_output": 22.0,
+  "expected_status": "red",
+  "expected_violation": true,
+  "expected_violation_proof": {
+    "rule_id": "R003_usury",
+    "threshold": 20.0,
+    "actual_value": 22.0
+  }
+}
