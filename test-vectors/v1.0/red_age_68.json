@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Red - age 68, high influence (discrimination)",
+  "policy_yaml": "id: anti_age_policy\nrules:\n  - id: R001_anti_age\n    type: input_influence\n    input_features: [\"age\"]\n    threshold: 0.01\n    action: block\n",
+  "model_input": {"age": 68},
+  "model_output": 0.045,
+  "expected_status": "red",
+  "expected_violation": true
+}
