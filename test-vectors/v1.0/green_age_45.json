@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "name": "Green - age 45 (no discrimination)",
+  "policy_yaml": "id: anti_age_policy\nrules:\n  - id: R001_anti_age\n    type: input_influence\n    input_features: [\"age\"]\n    threshold: 0.01\n    action: block\n",
+  "model_input": {"age": 45},
+  "model_output": 0.002,
+  "expected_status": "green"
+}
