@@ -133,7 +133,7 @@ For the full diagram, see [`docs/architecture.png`](docs/architecture.png).
 ## Contributing
 
 OVIS is in early stage. We welcome feedback, security audits, and pilot partnerships.  
-Reach out: **team@ovis-labs.com**
+Reach out: **totalprotocol@proton.me**
 
 ## License
 
