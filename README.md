@@ -142,6 +142,6 @@ Apache 2.0 – free for academic and commercial use. Open standard forever.
 ---
 
 **Built with ❤️ to make AI accountable.**  
-*For investors: ask us for the live demo or the full pitch deck.*
+
 ```
 
